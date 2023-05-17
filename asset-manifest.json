@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/ContactForm/static/css/main.17497891.css",
-    "main.js": "/ContactForm/static/js/main.2f052976.js",
+    "main.js": "/ContactForm/static/js/main.652d0099.js",
     "static/js/787.a5a00b74.chunk.js": "/ContactForm/static/js/787.a5a00b74.chunk.js",
     "static/media/loade.gif": "/ContactForm/static/media/loade.1a3eed3117090167de31.gif",
     "index.html": "/ContactForm/index.html",
     "main.17497891.css.map": "/ContactForm/static/css/main.17497891.css.map",
-    "main.2f052976.js.map": "/ContactForm/static/js/main.2f052976.js.map",
+    "main.652d0099.js.map": "/ContactForm/static/js/main.652d0099.js.map",
     "787.a5a00b74.chunk.js.map": "/ContactForm/static/js/787.a5a00b74.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.17497891.css",
-    "static/js/main.2f052976.js"
+    "static/js/main.652d0099.js"
   ]
 }
