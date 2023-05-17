@@ -1,23 +1,41 @@
-import logo from './logo.svg';
+import { useState ,useEffect} from 'react';
 import './App.css';
+import Container from './containers/container';
+import MyContext from './context';
+import Load from './components/loading';
 
 function App() {
+  const[loadingtimer,setLoadingtimer]=useState(true)
+  const[contactdata,setContactdata]=useState([])
+  const sharedData = {
+    contactdata,
+    setContactdata
+  };
+  useEffect(()=>{
+setTimeout(()=>{
+setLoadingtimer(false)
+},4000)
+
+  },[])
+  useEffect(() => {
+    const storedFormData = localStorage.getItem('form');
+    if (storedFormData) {
+      setContactdata(JSON.parse(storedFormData));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('form', JSON.stringify(contactdata));
+  }, [contactdata]);
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {loadingtimer?<Load/>
+      :
+       <MyContext.Provider value={sharedData}>
+   <Container/>
+   </MyContext.Provider> 
+  }
     </div>
   );
 }

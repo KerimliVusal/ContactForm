@@ -1,0 +1,21 @@
+.navigationbar{
+    background-color: rgb(87, 87, 87);
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+
+    
+    h1{
+        color: rgb(231, 231, 231);
+        text-shadow: -2px 1px 2px rgb(202, 172, 2);
+    }
+    .createbutton{
+        background: rgb(221, 221, 221);
+        color: green;
+    }
+    .createbutton:hover{
+        background: rgb(5, 102, 2);
+
+
+    }
+}
