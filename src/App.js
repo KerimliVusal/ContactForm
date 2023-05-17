@@ -33,11 +33,9 @@ setLoadingtimer(false)
     <div className="App">
       {loadingtimer?<Load/>
       :
-      <HashRouter>
        <MyContext.Provider value={sharedData}>
    <Container/>
    </MyContext.Provider> 
-   </HashRouter>
   }
     </div>
   );
