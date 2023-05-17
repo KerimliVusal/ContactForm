@@ -3,6 +3,7 @@ import './App.css';
 import Container from './containers/container';
 import MyContext from './context';
 import Load from './components/loading';
+import { HashRouter } from 'react-router-dom';
 
 function App() {
   const[loadingtimer,setLoadingtimer]=useState(true)
@@ -32,9 +33,11 @@ setLoadingtimer(false)
     <div className="App">
       {loadingtimer?<Load/>
       :
+      <HashRouter>
        <MyContext.Provider value={sharedData}>
    <Container/>
    </MyContext.Provider> 
+   </HashRouter>
   }
     </div>
   );
