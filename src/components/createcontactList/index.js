@@ -17,10 +17,7 @@ const Contacts=()=>{
     onFinishFailed('Ad və Soyad Eyni ola Bilməz!')
     return;
   }
-  if (name === contactdata.name && surname === contactdata.name) {
-    alert("New data is the same as the previous data!");
-    return;
-  }
+ 
   const hasSameNameSurname = contactdata.map(
     (data) => data.name === name && data.surname === surname).includes(true);
 

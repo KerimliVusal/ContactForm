@@ -17,13 +17,10 @@ const UpdateContacts=()=>{
   const onFinish = (formData) => {
     const { name, surname } = formData;
   if (name === surname) {
-    onFinishFailed()
-    return;
-  }
-  if (name === contactdata.name && surname === contactdata.name) {
     onFinishFailed('Ad və Soyad Eyni ola Bilməz!')
     return;
   }
+ 
   const hasSameNameSurname = contactdata.map(
     (data) => data.name === name && data.surname === surname).includes(true);
 
