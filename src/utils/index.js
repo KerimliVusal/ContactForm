@@ -19,23 +19,28 @@ export const SuccessNotification = () => {
     })
   };
  export  const onFinishFailed = (errorInfo) => {
-    console.log('Failed:', errorInfo);
+  Swal.fire({
+    icon: 'error',
+    title: 'Xəta...',
+    text: errorInfo,
+   
+  })
   };
   
     export const Remove=()=>{
       Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to revert this!",
+        title: 'Silmək istəyirsiz?',
+        text: "Yenidən geri qaytarmaq olmaz!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
+        confirmButtonText: 'Razıyam!'
       }).then((result) => {
         if (result.isConfirmed) {
           Swal.fire(
-            'Deleted!',
-            'Your file has been deleted.',
+            'SİLİNDİ!',
+            'Məlumat artiq silidi.',
             'success'
           )
         }

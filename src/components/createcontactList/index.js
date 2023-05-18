@@ -1,15 +1,33 @@
 import { Button, Checkbox, Form, Input, Select,Radio} from 'antd';
 import './contactlist.scss';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import MyContext from "../../context"; 
 import {useNavigate} from 'react-router-dom'
 import {onFinishFailed,onReset,SuccessNotification } from '../../utils';
 import { v4 as uuidv4 } from 'uuid';
 const Contacts=()=>{
+  const[selectedproffesion,setSelectedproffesion]=useState('Web Developer')
   const navigate=useNavigate()
     const [form] = Form.useForm();
     const {contactdata,setContactdata} = useContext(MyContext);
  const onFinish = (values) => {
+  const { name, surname } = values;
+
+  if (name === surname) {
+    onFinishFailed('Ad və Soyad Eyni ola Bilməz!')
+    return;
+  }
+  if (name === contactdata.name && surname === contactdata.name) {
+    alert("New data is the same as the previous data!");
+    return;
+  }
+  const hasSameNameSurname = contactdata.map(
+    (data) => data.name === name && data.surname === surname).includes(true);
+
+  if (hasSameNameSurname) {
+   onFinishFailed('Data artıq movcuddur!')
+    return;
+  }
   const id = uuidv4();
   const newFormValue = {...values,id:id}
   setContactdata([...contactdata,newFormValue]);
@@ -47,6 +65,7 @@ navigate('/')
             {
               required: true,
               message: 'Ad daxil edin!',
+              min:3
             },
           ]}
         >
@@ -60,6 +79,7 @@ navigate('/')
             {
               required: true,
               message: 'Soyad daxil edin!',
+              min:3
             },
           ]}
         >
@@ -72,6 +92,8 @@ navigate('/')
             {
               required: true,
               message: 'Ata adını daxil edin!',
+              min:3
+
             },
           ]}
         >
@@ -85,7 +107,9 @@ navigate('/')
             {
               required: true,
               message: 'Email unvanını daxil edin!',
-              type:'email'
+              type:'email',
+              min:3
+
             },
           ]}
         >
@@ -105,6 +129,7 @@ navigate('/')
           <Input.TextArea placeholder='Əlavə məlumatları daxil edin!'/>
         </Form.Item>
         <Form.Item
+        initialValue='Web Developer'
           label="Ixtisas"
           name="profession"
           rules={[
@@ -114,7 +139,7 @@ navigate('/')
             },
           ]}
         >
-          <Select defaultValue='developer'>
+          <Select >
           <Select.Option value="developer">Web Developer</Select.Option>
           <Select.Option value="muhasib">Muhasib</Select.Option>
           <Select.Option value="analitik">Data Analitik</Select.Option>

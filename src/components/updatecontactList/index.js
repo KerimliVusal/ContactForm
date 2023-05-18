@@ -15,6 +15,22 @@ const UpdateContacts=()=>{
   const {contactdata,setContactdata} = useContext(MyContext);
   const { id } = useParams();
   const onFinish = (formData) => {
+    const { name, surname } = formData;
+  if (name === surname) {
+    onFinishFailed()
+    return;
+  }
+  if (name === contactdata.name && surname === contactdata.name) {
+    onFinishFailed('Ad və Soyad Eyni ola Bilməz!')
+    return;
+  }
+  const hasSameNameSurname = contactdata.map(
+    (data) => data.name === name && data.surname === surname).includes(true);
+
+  if (hasSameNameSurname) {
+   onFinishFailed('Data artıq movcuddur!')
+    return;
+  }
     setContactdata(prevContacts =>
       prevContacts.map(contact =>
         contact.id ===id
@@ -74,6 +90,8 @@ const UpdateContacts=()=>{
             {
               required: true,
               message: 'Ad daxil edin!',
+              min:3
+
             },
           ]}
         >
@@ -87,6 +105,8 @@ const UpdateContacts=()=>{
             {
               required: true,
               message: 'Soyad daxil edin!',
+              min:3
+
             },
           ]}
         >
@@ -99,6 +119,8 @@ const UpdateContacts=()=>{
             {
               required: true,
               message: 'Ata adını daxil edin!',
+              min:3
+
             },
           ]}
         >
@@ -112,7 +134,9 @@ const UpdateContacts=()=>{
             {
               required: true,
               message: 'Email unvanını daxil edin!',
-              type:'email'
+              type:'email',
+              min:3
+
             },
           ]}
         >
@@ -132,6 +156,7 @@ const UpdateContacts=()=>{
           <Input.TextArea placeholder='Əlavə məlumatları daxil edin!'/>
         </Form.Item>
         <Form.Item
+        initialValue='Web Developer'
           label="Ixtisas"
           name="profession"
           rules={[
@@ -141,7 +166,7 @@ const UpdateContacts=()=>{
             },
           ]}
         >
-          <Select defaultValue='developer' >
+          <Select  >
           <Select.Option value="developer">Web Developer</Select.Option>
           <Select.Option value="muhasib">Muhasib</Select.Option>
           <Select.Option value="analitik">Data Analitik</Select.Option>
